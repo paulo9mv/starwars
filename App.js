@@ -27,12 +27,9 @@ import MainScreen from './app/MainScreen'
 
 const App = () => {
   return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
+  
         <MainScreen />
-      </SafeAreaView>
-    </Fragment>
+      
   );
 };
 
