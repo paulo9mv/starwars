@@ -6,8 +6,6 @@ import Browser from './Browser';
 import OpenCloseButton from './OpenCloseButton';
 
 export default class Personagem extends React.Component {
- 
-
   state = {
     open: false,
   };
@@ -16,7 +14,7 @@ export default class Personagem extends React.Component {
     this.setState({
       open: !this.state.open,
     });
-  }
+  };
 
   render() {
     const {personagem, indice} = this.props;

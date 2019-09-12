@@ -10,7 +10,6 @@ import {
 import Personagem from './components/Personagem';
 
 export default class MainScreen extends React.Component {
-
   state = {
     next: '',
     results: [],
@@ -33,8 +32,6 @@ export default class MainScreen extends React.Component {
   getItems() {
     const {results} = this.state;
 
-    console.log('this.state', this.state);
-
     if (results.length == 0) {
       return (
         <View>
@@ -53,7 +50,7 @@ export default class MainScreen extends React.Component {
     return layoutMeasurement.height + contentOffset.y >= contentSize.height - 1;
   };
 
-  fetchNext = ({nativeEvent}) => { 
+  fetchNext = ({nativeEvent}) => {
     const {fetching, next, results} = this.state;
 
     if (!fetching && this.isCloseToBottom(nativeEvent) && next != null) {
@@ -75,7 +72,7 @@ export default class MainScreen extends React.Component {
   };
 
   render() {
-    const { fetching, count} = this.state;
+    const {fetching, count} = this.state;
 
     return (
       <View>
@@ -102,10 +99,10 @@ const CircularStd = {
 };
 
 const styles = StyleSheet.create({
-  title : {
-    fontFamily : CircularStd.regular,
-    marginHorizontal : 30,
-    marginVertical : 15,
-    fontSize : 15
-  }
-})
+  title: {
+    fontFamily: CircularStd.regular,
+    marginHorizontal: 30,
+    marginVertical: 15,
+    fontSize: 15,
+  },
+});
