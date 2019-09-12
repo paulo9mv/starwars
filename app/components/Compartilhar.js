@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import {Share, TouchableOpacity, Image} from 'react-native';
+
+import IconButton from './IconButton'
+
 const shareIcon = require('../../assets/share.png')
 
 export default class Compartilhar extends Component {
@@ -29,9 +32,7 @@ export default class Compartilhar extends Component {
 
   render() {
     return (
-        <TouchableOpacity onPress={this.onShare}>
-            <Image source={shareIcon}/>            
-        </TouchableOpacity>
+      <IconButton onPress={this.onShare} icon={shareIcon} width={30} height={30}/>      
     )
   }
 }
