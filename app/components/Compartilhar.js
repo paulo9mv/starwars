@@ -30,8 +30,7 @@ export default class Compartilhar extends Component {
   render() {
     return (
         <TouchableOpacity onPress={this.onShare}>
-            <Image source={shareIcon}/>
-            
+            <Image source={shareIcon}/>            
         </TouchableOpacity>
     )
   }

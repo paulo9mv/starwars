@@ -5,7 +5,7 @@ import {
   View,
   ScrollView,
   ActivityIndicator,
-  FlatList,
+  StyleSheet,
 } from 'react-native';
 import Personagem from './components/Personagem';
 
@@ -84,7 +84,7 @@ export default class MainScreen extends React.Component {
 
     return (
       <View>
-        <Text>Personagens no total: {count}</Text>
+        <Text style={styles.title}>Personagens no total: {count}</Text>
         <ScrollView onScroll={this.fetchNext}>
           {fetching && (
             <ActivityIndicator
@@ -99,3 +99,18 @@ export default class MainScreen extends React.Component {
     );
   }
 }
+
+const CircularStd = {
+  regular: 'CircularStd-Book',
+  medium: 'CircularStd-Medium',
+  bold: 'CircularStd-Bold',
+};
+
+const styles = StyleSheet.create({
+  title : {
+    fontFamily : CircularStd.regular,
+    marginHorizontal : 30,
+    marginVertical : 15,
+    fontSize : 15
+  }
+})

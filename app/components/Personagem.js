@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text, TouchableOpacity, Share, StyleSheet} from 'react-native';
+import {View, Text, Linking, Button, StyleSheet} from 'react-native';
 
 import Compartilhar from './Compartilhar';
 import OpenCloseButton from './OpenCloseButton'
@@ -27,10 +27,12 @@ export default class Personagem extends React.Component {
 
     const {open} = this.state;
 
-    //console.log(personagem);
+    const nameURL = `https://pt.wikipedia.org/wiki/${name}`;
+    const URL = nameURL.replace(" ", "_");
+
+    const shareMessage = `Você gosta de Star Wars? Sabia que o(a) ${name} nasceu em ${birth_year}, possui olhos da cor ${eye_color} e pesa ${mass} kg? Confira mais em ${URL} !`;
 
     return (
-
         <View style={styles.container}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent : 'space-between', marginBottom: 4 }}>    
             <Text style={styles.title}>#{indice} {name}</Text>            
@@ -39,10 +41,13 @@ export default class Personagem extends React.Component {
           <Text style={styles.subText}>{birth_year}</Text>
           {open && (
             <View>
-              <Text>Peso: {mass}kg</Text>
-          <Text>Cor dos olhos: {eye_color}</Text>
-          <Text>Ano de nascimento: {birth_year}</Text>
-              <Text>Cor do cabelo: {hair_color}</Text>
+              <View style={{flex : 1}}>
+                <Text style={styles.subText}>Peso: {mass}kg</Text>
+                <Text style={styles.subText}>Cor dos olhos: {eye_color}</Text>                
+                <Text style={styles.subText}>Cor do cabelo: {hair_color}</Text>
+              </View>
+              <Compartilhar message={shareMessage}/>
+              <Button title={'BABAS'} onPress={() => Linking.openURL(URL)}/>
             </View>
           )}
           </View>
@@ -77,6 +82,11 @@ const styles = StyleSheet.create({
   subText : {
     fontFamily : CircularStd.regular,
     fontSize : 16,
+    color : '#B9B9B9'
+  },
+  details : {
+    fontFamily : CircularStd.regular,
+    fontSize : 12,
     color : '#B9B9B9'
   }
 });

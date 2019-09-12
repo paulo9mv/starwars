@@ -27,9 +27,7 @@ import MainScreen from './app/MainScreen'
 
 const App = () => {
   return (
-  
-        <MainScreen />
-      
+        <MainScreen />   
   );
 };
 
