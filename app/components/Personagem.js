@@ -2,21 +2,17 @@ import * as React from 'react';
 import {View, Text, Linking, Button, StyleSheet} from 'react-native';
 
 import Compartilhar from './Compartilhar';
-import Browser from './Browser'
+import Browser from './Browser';
 import OpenCloseButton from './OpenCloseButton';
 
 export default class Personagem extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
+ 
 
   state = {
     open: false,
   };
 
-  handleClick() {
+  handleClick = () => {
     this.setState({
       open: !this.state.open,
     });
@@ -31,7 +27,7 @@ export default class Personagem extends React.Component {
     const nameURL = `https://pt.wikipedia.org/wiki/${name}`;
     const URL = nameURL.replace(' ', '_');
 
-    const shareMessage = `Você gosta de Star Wars? Sabia que o(a) ${name} nasceu em ${birth_year}, possui olhos da cor ${eye_color} e pesa ${mass} kg? Confira mais em ${URL} !`;
+    const shareMessage = `Você gosta de Star Wars? Sabia que ${name} nasceu em ${birth_year}, possui olhos da cor ${eye_color} e pesa ${mass} kg? Confira mais em ${URL} !`;
 
     return (
       <View style={styles.container}>
@@ -47,15 +43,15 @@ export default class Personagem extends React.Component {
         </View>
         <Text style={styles.subText}>{birth_year}</Text>
         {open && (
-          <View>
+          <View style={{marginVertical: 10, marginHorizontal: 10}}>
             <View style={{flex: 1}}>
-              <Text style={styles.subText}>Peso: {mass}kg</Text>
+              <Text style={styles.subText}>Peso: {mass} kg</Text>
               <Text style={styles.subText}>Cor dos olhos: {eye_color}</Text>
               <Text style={styles.subText}>Cor do cabelo: {hair_color}</Text>
             </View>
-            <View style={{position : 'absolute', right : 0}}>
-            <Compartilhar message={shareMessage} />
-            <Browser url={URL}/>
+            <View style={{position: 'absolute', right: 0}}>
+              <Compartilhar message={shareMessage} />
+              <Browser url={URL} />
             </View>
           </View>
         )}
@@ -96,11 +92,6 @@ const styles = StyleSheet.create({
   subText: {
     fontFamily: CircularStd.regular,
     fontSize: 16,
-    color: '#B9B9B9',
-  },
-  details: {
-    fontFamily: CircularStd.regular,
-    fontSize: 12,
-    color: '#B9B9B9',
+    color: '#AAAAAA',
   },
 });

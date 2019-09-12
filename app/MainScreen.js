@@ -10,11 +10,6 @@ import {
 import Personagem from './components/Personagem';
 
 export default class MainScreen extends React.Component {
-  constructor(props) {
-    super(props);
-
-    //this.fetchNext = this.fetchNext.bind(this);
-  }
 
   state = {
     next: '',
@@ -80,7 +75,7 @@ export default class MainScreen extends React.Component {
   };
 
   render() {
-    const {fetching, next, results, count} = this.state;
+    const { fetching, count} = this.state;
 
     return (
       <View>
@@ -88,7 +83,7 @@ export default class MainScreen extends React.Component {
         <ScrollView onScroll={this.fetchNext}>
           {fetching && (
             <ActivityIndicator
-              style={{position: 'absolute', bottom: 10}}
+              style={{position: 'absolute', bottom: 15}}
               size="large"
               color="#0000ff"
             />
