@@ -1,0 +1,19 @@
+name: Build and Deploy
+on:
+  push:
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+*
+
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: |
+          echo "Build"
+      - name: Deploy
+        run: |
+          echo "Deploy"
+          echo ${{github.ref}}
