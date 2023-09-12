@@ -16,4 +16,4 @@ jobs:
       - name: Deploy
         run: |
           echo "Deploy"
-          echo ${{github.ref}}
+          echo ${{github.ref}} ${{github.ref_name}}
