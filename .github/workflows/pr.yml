@@ -14,6 +14,7 @@ jobs:
       - run: echo "oi"
 
   job_para_esperar:
+    needs: teste
     name: Job para esperar
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +27,7 @@ jobs:
           wait-interval: 10
 
   setup:
+    needs: job_para_esperar
     name: Setup
     runs-on: ubuntu-latest
     steps:
