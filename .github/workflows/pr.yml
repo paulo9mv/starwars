@@ -6,10 +6,25 @@ on:
       - opened
       - synchronize
 
-concurrency:
-  group: ${{ github.ref }}
-
 jobs:
+  teste:
+    name: Teste
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "oi"
+
+  job_para_esperar:
+    name: Job para esperar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.3.1
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'Setup'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+
   setup:
     name: Setup
     runs-on: ubuntu-latest
