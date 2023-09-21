@@ -18,7 +18,7 @@ jobs:
 
   run_in_mutex:
     needs: teste
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, runner-shared-build]
     name: Simple mutex test
     steps:
       - uses: actions/checkout@v3
