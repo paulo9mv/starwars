@@ -10,56 +10,8 @@ concurrency:
   group: ${{ github.ref }}
 
 jobs:
-  teste:
+  test:
     name: Teste
     runs-on: ubuntu-latest
     steps:
       - run: sleep 150
-
-  run_in_mutex:
-    needs: teste
-    runs-on: [self-hosted, runner-shared-build]
-    name: Simple mutex test
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up mutex
-        uses: ben-z/gh-action-mutex@v1.0-alpha-7
-      - run: |
-          echo "I am protected!"
-          sleep 5
-
-  setup:
-    needs: run_in_mutex
-    name: Setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.12.0'
-
-      - name: Cache node modules
-        id: cache-node-modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: |
-            **/node_modules
-            **/.yarn
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
-          restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
-
-      - name: Cache built libs
-        id: cache-built-libs
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-built-libs
-        with:
-          path: |
-            **/build/libs
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
-          restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
