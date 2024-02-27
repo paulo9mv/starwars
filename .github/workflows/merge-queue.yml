@@ -1,0 +1,23 @@
+name: 'merge-queue'
+
+on:
+  merge_group:
+
+jobs:
+  test:
+    name: Lint, Format Check and Spell Checker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v3
+        with:
+          main-branch-name: 'master'
+
+      - run: |
+          echo "BASE: ${{ steps.setSHAs.outputs.base }}"
+          echo "HEAD: ${{ steps.setSHAs.outputs.head }}"
